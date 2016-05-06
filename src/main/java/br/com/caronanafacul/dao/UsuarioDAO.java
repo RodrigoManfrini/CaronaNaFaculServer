@@ -35,4 +35,14 @@ public class UsuarioDAO extends AbstractDAO<Usuario, Integer> {
 		return usuario;
 	}
 	
+	public Usuario findByFacebookId(Long facebookId) {
+		
+		final Usuario usuario = (Usuario) hibernateHelper.getSessionFactory().openSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("facebookId", facebookId))
+				.uniqueResult();
+		
+		return usuario;
+	}
+	
 }

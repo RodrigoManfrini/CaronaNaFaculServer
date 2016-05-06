@@ -1,6 +1,5 @@
 package br.com.caronanafacul.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -24,8 +23,9 @@ public class CaronaController {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void put(Carona carona) {
+		System.out.println("Dentro do put no servidor"+carona.toString());
 		try {
-			caronaDAO.merge(carona);
+			caronaDAO.save(carona);
 		
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block

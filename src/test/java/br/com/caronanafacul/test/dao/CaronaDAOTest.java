@@ -17,7 +17,7 @@ public class CaronaDAOTest {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
 //		try {
-			Usuario usuario = usuarioDAO.findById(3);
+			Usuario usuario = usuarioDAO.findById(1);
 			
 			System.out.println(usuario);
 			

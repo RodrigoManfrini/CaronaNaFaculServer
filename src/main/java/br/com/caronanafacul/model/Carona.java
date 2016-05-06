@@ -61,7 +61,7 @@ public class Carona {
 	private Usuario usuario;	
 	
 	@OneToMany
-	@JoinColumn(name = "id_carona", referencedColumnName = "id_carona", nullable = false)
+	@JoinColumn(name = "id_carona", referencedColumnName = "id_carona")
 	@Access(AccessType.FIELD)
 	private Collection<Vaga> vagas;
 	

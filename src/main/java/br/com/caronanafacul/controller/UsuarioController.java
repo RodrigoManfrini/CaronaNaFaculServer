@@ -1,11 +1,10 @@
 package br.com.caronanafacul.controller;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import br.com.caronanafacul.dao.DAOException;
@@ -17,23 +16,18 @@ public class UsuarioController {
 	
 	//TODO usar injeção de dependência
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
-
-	public void entrar(Usuario usuario) {
-		
-	}
-
-	public void sair(Usuario usuario) {
-
-	}
 	
-	public void cancelar(Usuario usuario){
-		
-	}
 	
-	@GET
+	//TODO método pra login
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Usuario getByEmail(@QueryParam(value = "email") String email){
-		return usuarioDAO.findByEmail(email);
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Usuario getByFacebookId(Usuario usuario) throws DAOException{
+		Usuario usuarioBanco = usuarioDAO.findByFacebookId(usuario.getFacebookId());
+		if(usuarioBanco == null){
+			usuarioBanco = (Usuario) usuarioDAO.merge(usuario);
+		}
+		return usuarioBanco;
 	}
 	
 	@PUT
