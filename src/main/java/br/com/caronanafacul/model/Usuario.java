@@ -6,6 +6,8 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
@@ -23,16 +25,33 @@ public class Usuario implements Serializable {
 	@GeneratedValue(generator = "genUsuario")
 	@XmlElement
 	private Integer id;
+	
+	@XmlElement
+	@Access(AccessType.FIELD)
+	@Column(name = "nome_usuario", length = 50, nullable = false)
+	private String nome;
+	
+	@XmlElement
+	@Access(AccessType.FIELD)
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "sexo_usuario")
+	private Sexo sexo;
 
 	@XmlElement
 	@Access(AccessType.FIELD)
 	@Column(name = "email_usuario", length = 50, unique = true, nullable = false)
 	private String email;
+	
 
 	@XmlElement
 	@Access(AccessType.FIELD)
 	@Column(name = "faculdade_usuario", length = 50)
 	private String faculdade;
+	
+	@XmlElement
+	@Access(AccessType.FIELD)
+	@Column(name = "face_id_usuario", nullable = false)
+	private Long facebookId;
 
 	protected Usuario() {
 		// Construtor pro hibernate
@@ -68,4 +87,23 @@ public class Usuario implements Serializable {
 	public String getFaculdade() {
 		return faculdade;
 	}
+	
+	public Long getFacebookId() {
+		return facebookId;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public Sexo getSexo() {
+		return sexo;
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", email=" + email + ", faculdade=" + faculdade + "]";
+	}
+	
+	
 }
